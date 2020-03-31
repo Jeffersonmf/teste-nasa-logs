@@ -7,6 +7,7 @@ Fonte oficial do dateset : http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
 Dados :
 
 [● Jul 01 to Jul 31, ASCII format, 20.7 MB gzip compressed , 205.2 MB.](ftp://ita.ee.lbl.gov/traces/NASA_access_log_Jul95.gz)
+
 [● Aug 04 to Aug 31, ASCII format, 21.8 MB gzip compressed , 167.8 MB.](ftp://ita.ee.lbl.gov/traces/NASA_access_log_Aug95.gz)
 
 Sobre o dataset : Esses dois conjuntos de dados possuem todas as requisições HTTP para o servidor da NASA Kennedy
@@ -15,11 +16,17 @@ Space Center WWW na Flórida para um período específico.
 
 Os logs estão em arquivos ASCII com uma linha por requisição com as seguintes colunas:
 
-● **Host fazendo a requisição** . Um hostname quando possível, caso contrário o endereço de internet se o nome não puder ser identificado.
+● **Host fazendo a requisição** . Um hostname quando possível, caso contrário o endereço de internet se o nome não puder ser identificado. 
+
 ● **Timestamp** no formato "DIA/MÊS/ANO:HH:MM:SS TIMEZONE"
+
 ● **Requisição (entre aspas)**
+
 ● **Código do retorno HTTP**
+
 ● **Total de bytes retornados**
+
+---
 
 **Questões**
  Responda as seguintes questões devem ser desenvolvidas em Spark utilizando a sua linguagem de preferência.
@@ -104,6 +111,8 @@ Os logs estão em arquivos ASCII com uma linha por requisição com as seguintes
 5. O total de bytes retornados.
 	**65524314915 Bytes**
 
+---
+
 **Explique o que o código Scala abaixo faz.**
 
 ```
@@ -114,24 +123,29 @@ val counts = textFile.flatMap(line => line.split(" "))
 counts.saveAsTextFile("hdfs://...")
 ```
 
-**linha1 = Carrega um arquivo no spark
-linha2 = Quebrar o texto quando encontrar espaço vazio, fazendo assim a separação das palavras
+**linha1 = Carrega um arquivo no spark 
+
+linha2 = Quebrar o texto quando encontrar espaço vazio, fazendo assim a separação das palavras 
+
 linha3 = Faz o mapeamento atribuindo 1 ponto para cada palavra
+
 linha4 = Aplica o reduce agrupando e somando quantas vezes a mesma palavra aparece
+
 linha5 = Salva o arquivo enriquecido com o agrupamento com contagem**
+
+---
 
 ### QUESTÕES:
 
-Gostaríamos de fazer um teste que será usado para sabermos a sua proficiência nas habilidades para a vaga. O teste consiste em algumas perguntas e exercícios práticos sobre Spark e as respostas e códigos implementados devem ser armazenados no GitHub. 
+Gostaríamos de fazer um teste que será usado para sabermos a sua proficiência nas habilidades para a vaga. O teste consiste em algumas perguntas e exercícios práticos sobre Spark e as respostas e códigos implementados devem ser armazenados no GitHub.
 
 O link do seu repositório deve ser compartilhado conosco ao final do teste.
-
 
 Quando usar alguma referência ou biblioteca externa, informe no arquivo README do seu projeto. Se tiver alguma dúvida, use o  bom senso e se precisar deixe isso registrado na documentação do projeto.
 
 #### 1 - Qual o objetivo do comando cache em Spark?
 
-Resp: È utilizado o conceito de Lazy load para as variáveis, assim os recursos serão utilizados somente de forma repentina e sob demanda, otimizando os processos. 
+Resp: È utilizado o conceito de Lazy load para as variáveis, assim os recursos serão utilizados somente de forma repentina e sob demanda, otimizando os processos.
 
 #### 2 - O mesmo código implementado em Spark é normalmente mais rápido que a implementação equivalente em MapReduce. Por quê?
 
@@ -147,18 +161,18 @@ Resp: RRD implementa um conceito de nós em cluster, paralelismo e dados distrib
 
 #### 5 - GroupByKey é menos eficiente que reduceByKey em grandes dataset.  Por quê?
 
-Resp: GroupByKey faz a combinação depois de calcular todos as combinações de registros fazendo um uso muito maior da memória. O ReduceByKey a combinação e a soma dos dados são feitas de forma parcial, conseguindo uma otimização muito maior, como o conceito de Streams. 
+Resp: GroupByKey faz a combinação depois de calcular todos as combinações de registros fazendo um uso muito maior da memória. O ReduceByKey a combinação e a soma dos dados são feitas de forma parcial, conseguindo uma otimização muito maior, como o conceito de Streams.
 
 
 ## Requisitos mínimos
 
-Tecnologia | Versão 
+Tecnologia | Versão
 ------- | --------
-Java | 8 
-Scala | 2.11.x 
-Spark | 2.4.4 
-SBT | 1.2.8 
-Docker   | corrente 
+Java | 8
+Scala | 2.11.x
+Spark | 2.4.4
+SBT | 1.2.8
+Docker   | corrente
 
 
 # Instruções de como testar a solução via Docker
